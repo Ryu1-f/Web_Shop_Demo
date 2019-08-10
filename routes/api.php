@@ -16,3 +16,12 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// ownersのREST APIを定義.
+Route::resource('owners', 'OwnerController');
+
+// productsのREST APIを定義
+Route::resource('products', 'ProductsController');
+// Route::group(['middleware' => ['api']], function(){
+//     Route::resource('products', 'ProductsController');
+// });

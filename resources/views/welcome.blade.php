@@ -92,6 +92,9 @@
                     <a href="https://nova.laravel.com">Nova</a>
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <?php
+                        // $users = DB::connection('mysql')->var_dump($users)
+                    ?>
                 </div>
             </div>
         </div>
