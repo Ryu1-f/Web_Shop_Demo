@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\DB;
+// use App\Models\DB;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class ProductsController extends Controller
 {
@@ -14,10 +16,11 @@ class ProductsController extends Controller
      */
     public function index()
     {
+        $users = DB::connection('mysql')->select('select * from testTable');
         // $items = \DB::table('testTable')->get();
-        // return response()->json([
-        //     [ 'name' => $items ]
-        // ]);
+        return response()->json([
+            [ 'name' => $users ]
+        ]);
         // return response()->json([
         //     [ 'name' => 'Ryu1' ]
         // ]);
