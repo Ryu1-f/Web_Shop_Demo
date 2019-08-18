@@ -73,6 +73,7 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
+        //test
         $products = [
             'img' => file_get_contents('/Users/ryu1fukami/Desktop/bb8.jpg'),
             'title' => 'Ryu1_paranomas',
@@ -81,12 +82,6 @@ class ProductsController extends Controller
         ];
 
         DB::connection('mysql')->insert('insert into products (img, title, description, cost) values (:img, :title, :description, :cost)', $products);
-        // $products = DB::connection('mysql')->insert([
-        //     'img' => file_get_contents('/Users/ryu1fukami/Desktop/bb8.jpg'),
-        //     'title' => 'Ryu1_paranomas',
-        //     'description' => '福岡で撮影した写真です',
-        //     'cost' => 2000,
-        // ]);
         // return response()->json([
         //     'insert' => $products,
         // ]);

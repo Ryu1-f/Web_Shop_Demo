@@ -10,6 +10,12 @@
         <!-- Styles -->
     </head>
     <body>
+        <ul>
+            <li><a href="index">商品一覧</a></li>
+            <li><a href="add">商品追加</a></li>
+            <li><a href="contact.asp">Contact</a></li>
+            <li><a href="about.asp">About</a></li>
+        </ul>
         <table align = "center" class = "item_lists">
             <tr><th>Img</th><th>Title</th><th>Description</th><th>Cost</th></tr>
             @foreach($items as $item)
