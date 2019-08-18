@@ -27,23 +27,44 @@ class ProductsController extends Controller
      */
     public function create(Request $request)
     {
+        //validation
+        $this->validate($request, [
+            'img'  => 'required|file|image',
+            'title' => 'required|max:100',
+            'description' => 'required|max:500',
+            'cost' => 'required|integer',            
+        ],[
+            'img.required' => '画像は必須項目です',
+            'img.image' => '画像ファイルを指定してください',
+            'title.required' => 'タイトルは必須項目です',
+            'title.max' => 'タイトルは最大100文字です',
+            'description.required' => '説明文は必須項目です',
+            'description.max' => '説明文は最大500文字です',
+            'cost.required' => '金額は必須項目です',
+            'cost.integer' => '金額は整数指定です',            
+        ]);
+
+        // dd($request->all()); // 入力値を表示
         $param = [
             'img' => '',
             'title' => $request->title,
             'description' => $request->description,
             'cost' => $request->cost,
         ];
-        if ($request->file('img')->isValid()) {
+        if ($request->img != null && $request->title != null && $request->description != null && $request->cost != null) {
             $type = $request->file('img')->guessExtension();
             $path = $request->file('img')->storeAs(
                 'public/post_images', $param['title'].'.'.$type
             );
             $param['img'] = $param['title'].'.'.$type;
             DB::connection('mysql')->insert('insert into products (img, title, description, cost) values (:img, :title, :description, :cost)', $param);
-            return view('products.add');    
-        } 
+            return redirect('products/index');    
+        } else{
+            $instruction = "記入していない項目があります。";
+            return view('products.add', ['instruction' => $instruction]);    
+        }
     }
-
+    // $request->file('img')->isValid() || 
     /**
      * Store a newly created resource in storage.
      *
@@ -73,7 +94,8 @@ class ProductsController extends Controller
 
     public function add(Request $request)
     {
-        return view('products.add');
+        $instruction = "formを埋めて送信して下さい";
+        return view('products.add', ['instruction' => $instruction]);    
     }
     /**
      * Display the specified resource.

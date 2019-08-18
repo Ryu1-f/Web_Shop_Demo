@@ -55,14 +55,119 @@ th{
   background-color: #999;
   color: fff;
   padding:5px 10px;
+  width: 10vw;
 }
 
 td{
   border: solid 1px #aaa;
   color: 999;
   padding: 5px 10px;
+  width: 30vw;
+  /* text-align:right; */
 }
 
 .img{
   width: 20vw;
 }
+
+.error_message{
+  color: red;
+}
+
+.label{
+  margin-top: 5px;
+  height: 20px;
+}
+
+.required_item{
+  display: inline-block;
+  margin-left: auto;
+  left: 30vw;
+  text-align:right;
+}
+
+.send_button{
+  /* width: 40vw; */
+  margin-top: 10px;
+}
+
+.send_button_th{
+  width: 0;
+}
+
+textarea:focus,
+input[type="file"]:focus,
+input[type="text"]:focus {
+    border: 1px solid #333;
+}
+button:hover{
+  background-color: #fff;
+}
+
+button {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  width: 10vw;
+  height: 4vh;
+  display: block;
+  position: relative;
+  background: #fff;
+  color: rgb(114, 109, 109);
+  text-align: center;
+  border: 1px solid #111;
+  cursor: pointer;
+}
+
+button:before {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 98%;
+  height: 3px;
+  background: #ccc;
+  bottom: -4px;
+  left: 1%;
+}
+
+@media print,screen and (min-width: 1024px) {
+  button {
+      -webkit-transition: all 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+      -moz-transition: all 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+      -ms-transition: all 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+      transition: all 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  }
+  button:hover {
+      color: #111;
+      background: #fff;
+  }
+}
+
+/* 必須マーク */
+.must {
+	background: #FF1A00;
+}
+
+/* 任意マーク */
+.free {
+	background: #999;
+}
+
+.must, .free {
+	color: #FFF;
+	border-radius: 3px;
+	font-size: 12px;
+	margin-right: 10px;
+  padding: 5px 10px;
+  margin-top: 15px;
+  letter-spacing: 0.2em;
+  display: inline-block;
+}
+
+.item_lists{
+  width: 80vw;
+  text-align: center;
+  vertical-align: center;
+}
+

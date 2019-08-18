@@ -9,23 +9,13 @@
         <!-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet"> -->
         <!-- Styles -->
     </head>
-    <?php 
-    // Content-typeテーブル
-    $contents_type = array(
-        'jpg'  => 'image/jpeg',
-        'jpeg' => 'image/jpeg',
-        'png'  => 'image/png',
-        'gif'  => 'image/gif',
-        'bmp'  => 'image/bmp',
-    );
-    ?>
     <body>
-        <table>
+        <table align = "center" class = "item_lists">
             <tr><th>Img</th><th>Title</th><th>Description</th><th>Cost</th></tr>
             @foreach($items as $item)
                 <tr>
                     <!--  var_dump({{storage_path('app/$item->img')}}); -->
-                    <td><img height="300" width="300" src ="/storage/post_images/{{$item->img}}"></td>
+                    <td><img width="300vw" src ="/storage/post_images/{{$item->img}}"></td>
                     <td>{{$item->title}}</td>
                     <td>{{$item->description}}</td>
                     <td>{{$item->cost}}</td>
