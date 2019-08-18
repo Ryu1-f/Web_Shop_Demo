@@ -17,8 +17,7 @@ class ProductsController extends Controller
     public function index(Request $request)
     {
         $items = DB::connection('mysql')->select('select * from products');
-        $paths = DB::connection('mysql')->select('select img from products');
-        return view('products.index', ['items' => $items, 'paths' => $paths]);
+        return view('products.index', ['items' => $items]);
     }
 
     /**
@@ -39,7 +38,7 @@ class ProductsController extends Controller
             $path = $request->file('img')->storeAs(
                 'public/post_images', $param['title'].'.'.$type
             );
-            $param['img'] = $path;
+            $param['img'] = $param['title'].'.'.$type;
             DB::connection('mysql')->insert('insert into products (img, title, description, cost) values (:img, :title, :description, :cost)', $param);
             return view('products.add');    
         } 

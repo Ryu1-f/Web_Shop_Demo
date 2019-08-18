@@ -25,9 +25,7 @@
             @foreach($items as $item)
                 <tr>
                     <!--  var_dump({{storage_path('app/$item->img')}}); -->
-                    <?php $path = $item->img;
-                     var_dump($path);?>
-                    <td><img class = "img" src ="{!!storage_path('app/'.$item->img)!!}"></td>
+                    <td><img height="300" width="300" src ="/storage/post_images/{{$item->img}}"></td>
                     <td>{{$item->title}}</td>
                     <td>{{$item->description}}</td>
                     <td>{{$item->cost}}</td>
