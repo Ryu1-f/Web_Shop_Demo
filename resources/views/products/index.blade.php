@@ -21,11 +21,13 @@
     ?>
     <body>
         <table>
-            var_dump({{ asset('/strage/app/$item->img')}});
             <tr><th>Img</th><th>Title</th><th>Description</th><th>Cost</th></tr>
             @foreach($items as $item)
                 <tr>
-                    <td><img src = "{{storage_path('app/$item->img')}}"></td>
+                    <!--  var_dump({{storage_path('app/$item->img')}}); -->
+                    <?php $path = $item->img;
+                     var_dump($path);?>
+                    <td><img class = "img" src ="{!!storage_path('app/'.$item->img)!!}"></td>
                     <td>{{$item->title}}</td>
                     <td>{{$item->description}}</td>
                     <td>{{$item->cost}}</td>
