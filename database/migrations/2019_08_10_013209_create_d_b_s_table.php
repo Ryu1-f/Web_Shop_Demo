@@ -13,7 +13,7 @@ class CreateDBSTable extends Migration
      */
     public function up()
     {
-        Schema::create('d_b_s', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title', 100);
             $table->string('description', 500);
@@ -32,6 +32,6 @@ class CreateDBSTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('d_b_s');
+        Schema::dropIfExists('');
     }
 }

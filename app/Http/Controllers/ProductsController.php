@@ -14,16 +14,11 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = DB::connection('mysql')->select('select * from testTable');
-        // $items = \DB::table('testTable')->get();
-        return response()->json([
-            [ 'name' => $users ]
-        ]);
-        // return response()->json([
-        //     [ 'name' => 'Ryu1' ]
-        // ]);
+        $items = DB::connection('mysql')->select('select * from products');
+        $paths = DB::connection('mysql')->select('select img from products');
+        return view('products.index', ['items' => $items, 'paths' => $paths]);
     }
 
     /**
@@ -31,9 +26,23 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $param = [
+            'img' => '',
+            'title' => $request->title,
+            'description' => $request->description,
+            'cost' => $request->cost,
+        ];
+        if ($request->file('img')->isValid()) {
+            $type = $request->file('img')->guessExtension();
+            $path = $request->file('img')->storeAs(
+                'public/post_images', $param['title'].'.'.$type
+            );
+            $param['img'] = $path;
+            DB::connection('mysql')->insert('insert into products (img, title, description, cost) values (:img, :title, :description, :cost)', $param);
+            return view('products.add');    
+        } 
     }
 
     /**
@@ -44,9 +53,29 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $products = [
+            'img' => file_get_contents('/Users/ryu1fukami/Desktop/bb8.jpg'),
+            'title' => 'Ryu1_paranomas',
+            'description' => '福岡で撮影した写真です',
+            'cost' => 2000,
+        ];
+
+        DB::connection('mysql')->insert('insert into products (img, title, description, cost) values (:img, :title, :description, :cost)', $products);
+        // $products = DB::connection('mysql')->insert([
+        //     'img' => file_get_contents('/Users/ryu1fukami/Desktop/bb8.jpg'),
+        //     'title' => 'Ryu1_paranomas',
+        //     'description' => '福岡で撮影した写真です',
+        //     'cost' => 2000,
+        // ]);
+        // return response()->json([
+        //     'insert' => $products,
+        // ]);
     }
 
+    public function add(Request $request)
+    {
+        return view('products.add');
+    }
     /**
      * Display the specified resource.
      *
