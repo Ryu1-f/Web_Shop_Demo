@@ -25,7 +25,7 @@
             <tr><th>Img</th><th>Title</th><th>Description</th><th>Cost</th></tr>
             @foreach($items as $item)
                 <tr>
-                    <td><img src = ".{{ asset('/strage/app/$item->img')}}."></td>
+                    <td><img src = "{{storage_path('app/$item->img')}}"></td>
                     <td>{{$item->title}}</td>
                     <td>{{$item->description}}</td>
                     <td>{{$item->cost}}</td>
