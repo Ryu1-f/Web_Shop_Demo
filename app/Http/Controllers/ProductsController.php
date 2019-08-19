@@ -45,20 +45,29 @@ class ProductsController extends Controller
         ]);
 
         // dd($request->all()); // 入力値を表示
-        $param = [
-            'img' => '',
-            'title' => $request->title,
-            'description' => $request->description,
-            'cost' => $request->cost,
-        ];
         if ($request->img != null && $request->title != null && $request->description != null && $request->cost != null) {
-            $type = $request->file('img')->guessExtension();
-            $path = $request->file('img')->storeAs(
-                'public/post_images', $param['title'].'.'.$type
-            );
-            $param['img'] = $param['title'].'.'.$type;
-            DB::connection('mysql')->insert('insert into products (img, title, description, cost) values (:img, :title, :description, :cost)', $param);
-            return redirect('products/index');    
+            $param = [
+                'img' => '',
+                'title' => $request->title,
+                'description' => $request->description,
+                'cost' => $request->cost,
+            ];
+            //whereを追記するとエラーに
+            $count = DB::connection('mysql')->select('select id from products where title = :title', ['title' => $request->title]);
+            if($count == NULL)
+            {
+                $type = $request->file('img')->guessExtension();
+                $path = $request->file('img')->storeAs(
+                    'public/post_images', $param['title'].'.'.$type
+                );
+                $param['img'] = $param['title'].'.'.$type;
+                DB::connection('mysql')->insert('insert into products (img, title, description, cost) values (:img, :title, :description, :cost)', $param);
+                return redirect('products/index');    
+            }else
+            {
+                $instruction = "その商品はすでに登録されています。";
+                return view('products.add', ['instruction' => $instruction]);        
+            }
         } else{
             $instruction = "記入していない項目があります。";
             return view('products.add', ['instruction' => $instruction]);    
