@@ -13,7 +13,7 @@
         <ul>
             <li><a href="index">商品一覧</a></li>
             <li><a href="add">商品追加</a></li>
-            <li><a href="contact.asp">Contact</a></li>
+            <li><a href="edit">Contact</a></li>
             <li><a href="about.asp">About</a></li>
         </ul>
         <div class = "add_items">

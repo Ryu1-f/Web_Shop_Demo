@@ -20,3 +20,5 @@ Route::get('/products/index','ProductsController@index');
 Route::get('/products/add','ProductsController@add');
 
 Route::post('products/add', 'ProductsController@create');
+
+Route::get('products/edit', 'ProductsController@edit');
