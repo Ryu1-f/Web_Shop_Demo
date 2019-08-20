@@ -120,7 +120,9 @@ class ProductsController extends Controller
      */
     public function edit(Request $request)
     {
-        return view('products.edit');    
+        $param = ['id' => $request -> id];
+        $items = DB::select('select * from products where id = :id', $param);
+        return view('products.edit', ['form' => $items[0]]);    
     }
 
     /**
