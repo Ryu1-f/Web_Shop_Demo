@@ -122,7 +122,16 @@ class ProductsController extends Controller
     {
         $param = ['id' => $request -> id];
         $items = DB::select('select * from products where id = :id', $param);
-        return view('products.edit', ['form' => $items[0]]);    
+        if($items != null)
+        {
+            // var_dump(array_column($items, 'img')[0]);
+            // var_dump(array_column($items, 'id'));
+            var_dump($items[0] -> img);
+            return view('products.edit', ['form' => $items[0]]);    
+        }else
+        {
+            return redirect('/products/unknown');
+        }
     }
 
     /**

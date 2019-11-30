@@ -171,7 +171,7 @@ button:before {
   vertical-align: center;
 }
 
-.item_lists, .add_items{
+.item_lists, .add_items, .unknown_item{
   padding-top: 50px;
 }
 

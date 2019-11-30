@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('initial.welcome');//ディレクトリ名.ファイル名
 });
 
+Route::get('/products/unknown', function () {
+    return view('products.unknown_user');//ディレクトリ名.ファイル名
+});
+
 Route::get('/products/index','ProductsController@index');
 
 Route::get('/products/add','ProductsController@add');
